@@ -38,6 +38,17 @@ export function parseEditorialJsonl(input: string) {
     if (/^[\x00-\x7F\s\p{P}]+$/u.test(text)) {
       errors.push(`line ${index + 1}: Indic translation appears ASCII-only`);
     }
+    const language = value.language as EditorialLanguage;
+    const expectedScript = EDITORIAL_LANGUAGES.includes(language)
+      ? {
+      hi: /[\u0900-\u097f]/u,
+      or: /[\u0b00-\u0b7f]/u,
+      bn: /[\u0980-\u09ff]/u,
+        }[language]
+      : undefined;
+    if (expectedScript && !expectedScript.test(text)) {
+      errors.push(`line ${index + 1}: text does not contain the expected script`);
+    }
     const key = `${value.ref}:${value.language}`;
     if (keys.has(key)) errors.push(`line ${index + 1}: duplicate ${key}`);
     keys.add(key);

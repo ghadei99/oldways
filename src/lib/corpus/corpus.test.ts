@@ -133,16 +133,16 @@ describe("story references", () => {
 });
 
 describe("editorial translation JSONL", () => {
-  it("contains 8 valid, unique passages in each Indic language", () => {
+  it("contains a valid, unique machine-assisted translation for every Griffith passage", () => {
     const input = readFileSync(
       new URL("../../../data/translations/oldways-editorial.jsonl", import.meta.url),
       "utf8",
     );
     const parsed = parseEditorialJsonl(input);
     expect(parsed.errors).toEqual([]);
-    expect(parsed.rows).toHaveLength(24);
+    expect(parsed.rows).toHaveLength(30_819);
     for (const language of ["hi", "or", "bn"]) {
-      expect(parsed.rows.filter((row) => row.language === language)).toHaveLength(8);
+      expect(parsed.rows.filter((row) => row.language === language)).toHaveLength(10_273);
     }
   });
 });

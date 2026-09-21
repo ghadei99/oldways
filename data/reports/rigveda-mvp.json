@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T07:37:20.775Z",
+  "generatedAt": "2026-09-21T14:09:50.173Z",
   "corpusPassages": 10552,
   "stories": 19,
   "storyReferenceRows": 132,
@@ -14,22 +14,22 @@
   },
   "translations": {
     "hi": {
-      "machine": 8,
+      "machine": 10273,
       "reviewed": 0,
-      "available": 8,
-      "missing": 10544
+      "available": 10273,
+      "missing": 279
     },
     "or": {
-      "machine": 8,
+      "machine": 10273,
       "reviewed": 0,
-      "available": 8,
-      "missing": 10544
+      "available": 10273,
+      "missing": 279
     },
     "bn": {
-      "machine": 8,
+      "machine": 10273,
       "reviewed": 0,
-      "available": 8,
-      "missing": 10544
+      "available": 10273,
+      "missing": 279
     }
   }
 }

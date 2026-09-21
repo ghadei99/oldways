@@ -6,6 +6,7 @@ export type GriffithVerse = {
 export function stripWikiMarkup(input: string) {
   return input
     .replace(/\{\{ppoem\|?/g, "")
+    .replace(/\{\{(?:c|rh)\|(?:[^|\n}]*\|){0,2}\s*/gi, "")
     .replace(/\b(?:end|start)=stanza\|/g, "")
     .replace(/\{\{sc\|([^}]+)\}\}/gi, "$1")
     .replace(/\{\{[^{}]*\}\}/g, "")
@@ -67,7 +68,7 @@ export function parseGriffithWikitext(wikitext: string): GriffithVerse[] {
       .replace(/\s+/g, " ")
       .trim();
     if (first.length > 20) {
-      verses.unshift({ mantra: 1, text: first });
+      verses.unshift({ mantra: 1, text: cleanVerseText(first) });
     }
   }
   return verses;
@@ -81,15 +82,26 @@ function extractNumberedVerses(body: string, pattern: RegExp): GriffithVerse[] {
     const mantra = Number(match[1]);
     const start = (match.index ?? 0) + match[0].length;
     const end = i + 1 < matches.length ? (matches[i + 1].index ?? body.length) : body.length;
-    const text = body
+    const text = cleanVerseText(body
       .slice(start, end)
       .replace(/\s+/g, " ")
       .trim()
-      .replace(/^[.\-\s]+/, "");
+      .replace(/^[.\-\s]+/, ""));
     if (!text) continue;
     verses.push({ mantra, text });
   }
   return verses;
+}
+
+function cleanVerseText(text: string) {
+  return text
+    .replace(
+      /^.*?(?:THE )?BOOK THE (?:FIRST|SECOND|THIRD|FOURTH|FIFTH|SIXTH|SEVENTH|EIGHTH|NINTH|TENTH)\.\s*/i,
+      "",
+    )
+    .replace(/^\d+(?:\.\d+)?em\|\s*/i, "")
+    .replace(/([.!?])\s+\d{1,3}$/, "$1")
+    .trim();
 }
 
 export function parsePagesInclude(wikitext: string) {
