@@ -17,6 +17,19 @@ export async function searchLibrary(query: string) {
   const parsed = parseCanonicalReference(q);
   const needles = searchNeedles(q);
 
+  const titledSuktas = await prisma.textDivision.findMany({
+    where: { divisionType: "sukta" },
+    include: { parent: true, corpus: true },
+  });
+  const matchingSuktaIds = parsed
+    ? []
+    : titledSuktas
+        .filter((sukta) => {
+          const hay = `${sukta.title ?? ""} ${sukta.parent?.number}.${sukta.number}`;
+          return matchesFolded(hay, needles);
+        })
+        .map((sukta) => sukta.id);
+
   const passages = parsed
     ? await prisma.passage.findMany({
         where: {
@@ -47,8 +60,9 @@ export async function searchLibrary(query: string) {
                 ]
               : []),
             { canonicalReference: { contains: q.replace(/\s+/g, ".") } },
-            { translations: { some: { text: { contains: q }, ...translationFilter } } },
-            { division: { title: { contains: q } } },
+            ...(matchingSuktaIds.length
+              ? [{ divisionId: { in: matchingSuktaIds } }]
+              : []),
           ],
         },
         include: {
@@ -101,10 +115,6 @@ export async function searchLibrary(query: string) {
     .filter((theme) => matchesFolded(`${theme.title} ${theme.slug} ${theme.description ?? ""}`, needles))
     .slice(0, 10);
 
-  const titledSuktas = await prisma.textDivision.findMany({
-    where: { divisionType: "sukta" },
-    include: { parent: true, corpus: true },
-  });
   const suktas = titledSuktas
     .filter((sukta) => {
       if (parsed) {
