@@ -13,7 +13,6 @@ const root = process.cwd();
 const rawXml = join(root, "data/raw/rigveda/sa_Rgveda-edAufrecht.xml");
 const editorialPath = join(root, "data/editorial/seed.json");
 const titlesPath = join(root, "data/editorial/sukta-titles.json");
-const demoPath = join(root, "data/editorial/demo-translations.json");
 const normalizedDir = join(root, "data/normalized/rigveda");
 
 const SOURCE = {
@@ -67,13 +66,6 @@ type SuktaTitle = {
   context?: string;
   themes?: string[];
 };
-type DemoTranslation = {
-  canonicalReference: string;
-  language: string;
-  text: string;
-  translatorSlug: string;
-};
-
 function loadJson<T>(path: string): T {
   return JSON.parse(readFileSync(path, "utf8")) as T;
 }
@@ -139,71 +131,17 @@ export async function importRigveda() {
   });
   await removeObsoleteSources(prisma);
 
-  await prisma.translator.upsert({
-    where: { slug: "dev-seed-indic" },
-    update: {
-      name: "Development seed (working rendering)",
-      isHistorical: false,
-      notes:
-        "Unpublished Hindi, Odia, and Bengali working renderings. Not a historical edition.",
-    },
-    create: {
-      slug: "dev-seed-indic",
-      name: "Development seed (working rendering)",
-      isHistorical: false,
-      notes:
-        "Unpublished Hindi, Odia, and Bengali working renderings. Not a historical edition.",
-    },
+  const obsoleteTranslators = await prisma.translator.findMany({
+    where: { slug: { in: ["dev-seed-indic", "dev-seed-en"] } },
+    select: { id: true },
   });
-
-  await prisma.translator.upsert({
-    where: { slug: "dev-seed-en" },
-    update: {
-      name: "Development seed (English working gloss)",
-      isHistorical: false,
-      notes: "Unpublished working gloss. Not a historical edition.",
-    },
-    create: {
-      slug: "dev-seed-en",
-      name: "Development seed (English working gloss)",
-      isHistorical: false,
-      notes: "Unpublished working gloss. Not a historical edition.",
-    },
+  await prisma.translation.deleteMany({
+    where: { translatorId: { in: obsoleteTranslators.map((row) => row.id) } },
   });
-
-  const demoSource = await prisma.source.upsert({
-    where: { slug: "dev-seed-renderings" },
-    update: {
-      corpusId: corpus.id,
-      kind: "translation",
-      title: "Oldways development seed renderings",
-      year: 2026,
-      licence: "Internal development data only",
-      copyrightStatus: "unpublished_demo",
-      attributionText:
-        "Working renderings prepared for interface development. Not a published translation.",
-      attributionRequired: true,
-      visibility: "DEVELOPMENT",
-      commercialUseAllowed: false,
-      digitalProject: "Oldways development seeds",
-      internalNotes: "Visible only outside production unless SHOW_DEMO_TRANSLATIONS=1.",
-    },
-    create: {
-      slug: "dev-seed-renderings",
-      corpusId: corpus.id,
-      kind: "translation",
-      title: "Oldways development seed renderings",
-      year: 2026,
-      licence: "Internal development data only",
-      copyrightStatus: "unpublished_demo",
-      attributionText:
-        "Working renderings prepared for interface development. Not a published translation.",
-      attributionRequired: true,
-      visibility: "DEVELOPMENT",
-      commercialUseAllowed: false,
-      digitalProject: "Oldways development seeds",
-    },
+  await prisma.translator.deleteMany({
+    where: { slug: { in: ["dev-seed-indic", "dev-seed-en"] } },
   });
+  await prisma.source.deleteMany({ where: { slug: "dev-seed-renderings" } });
 
   const titles: SuktaTitle[] = existsSync(titlesPath)
     ? loadJson<SuktaTitle[]>(titlesPath)
@@ -383,63 +321,6 @@ export async function importRigveda() {
     }
   }
 
-  const showDemo =
-    process.env.NODE_ENV !== "production" ||
-    process.env.SHOW_DEMO_TRANSLATIONS === "1";
-
-  if (showDemo && existsSync(demoPath)) {
-    const demos = loadJson<DemoTranslation[]>(demoPath);
-    const translators = Object.fromEntries(
-      (await prisma.translator.findMany()).map((t) => [t.slug, t]),
-    );
-    for (const demo of demos) {
-      const passage = await prisma.passage.findUnique({
-        where: { canonicalReference: demo.canonicalReference },
-      });
-      const translator = translators[demo.translatorSlug];
-      if (!passage || !translator) {
-        parsed.malformed.push(
-          `demo translation missing passage/translator ${demo.canonicalReference}`,
-        );
-        continue;
-      }
-      const existing = await prisma.translation.findFirst({
-        where: {
-          passageId: passage.id,
-          language: demo.language,
-          translatorId: translator.id,
-        },
-      });
-      const data = {
-        text: demo.text,
-        sourceId: demoSource.id,
-        historicalWorkId: null,
-        workTitle: "Oldways development seed renderings",
-        publicationYear: 2026,
-        edition: null,
-        copyrightStatus: "unpublished_demo",
-        attribution:
-          "Working rendering. Not a historical or scholarly translation.",
-        status: "WORKING_TRANSLATION",
-        visibility: "DEVELOPMENT",
-        notes: "Development seed — unpublished working rendering.",
-        isDemo: true,
-      };
-      if (existing) {
-        await prisma.translation.update({ where: { id: existing.id }, data });
-      } else {
-        await prisma.translation.create({
-          data: {
-            passageId: passage.id,
-            language: demo.language,
-            translatorId: translator.id,
-            ...data,
-          },
-        });
-      }
-    }
-  }
-
   if (existsSync(editorialPath)) {
     await importEditorial(loadJson<Editorial>(editorialPath), themeRows, parsed.malformed);
   }
@@ -522,6 +403,7 @@ async function importEditorial(
     const cited = new Set<string>();
     for (const block of story.body.blocks) {
       for (const ref of refsFromBlock(block)) {
+        if (cited.has(ref)) continue;
         const passage = await prisma.passage.findUnique({
           where: { canonicalReference: ref },
         });

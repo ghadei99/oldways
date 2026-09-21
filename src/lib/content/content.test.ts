@@ -108,6 +108,13 @@ describe("development translations in production mode", () => {
         isDemo: false,
       }),
     ).toBe(true);
+    expect(
+      isProductionVisibleTranslation({
+        visibility: VISIBILITY.PRODUCTION,
+        status: TRANSLATION_STATUS.MACHINE_ASSISTED,
+        isDemo: false,
+      }),
+    ).toBe(true);
     expect(translationWhere(false)).toMatchObject({
       visibility: VISIBILITY.PRODUCTION,
       isDemo: false,
@@ -153,6 +160,21 @@ Thee, Vayu, with their hymns of praise.
     expect(hymn1.some((v) => v.text.includes("Vayu"))).toBe(false);
     expect(hymn2.some((v) => /I laud/i.test(v.text))).toBe(false);
     expect(hymn1[0]?.text).toMatch(/Agni, the chosen Priest/);
+  });
+
+  it("keeps continuation pages before a late target section marker", () => {
+    const wikitext = `{{ppoem|end=stanza|
+I WILL declare the manly deeds of Indra.
+2 <<< He slew the Dragon lying on the mountain.}}
+{{ppoem|start=stanza|
+3 <<< He grasped the thunder for his weapon.}}
+<section begin=hymn32 />{{ppoem|start=stanza|
+15 <<< Indra is King of all that moves and moves not.}}
+<section end=hymn32 />
+<section begin=hymn33 />33 <<< Not this hymn.<section end=hymn33 />`;
+    const verses = parseProofreadHymn(wikitext, 32);
+    expect(verses.map((verse) => verse.mantra)).toEqual([1, 2, 3, 15]);
+    expect(verses.some((verse) => verse.text.includes("Not this hymn"))).toBe(false);
   });
 });
 

@@ -17,6 +17,10 @@
     "db:fetch-griffith": "tsx scripts/fetch-griffith-wikisource.ts --skip-if-present",
     "db:validate": "tsx scripts/validate-provenance.ts",
     "db:compare-rv": "tsx scripts/compare-rigveda-sources.ts",
+    "translate:validate": "tsx scripts/translations/validate-translations.ts",
+    "translate:import": "tsx scripts/translations/import-translations.ts",
+    "translate:export": "tsx scripts/translations/export-pending.ts",
+    "report:mvp": "tsx scripts/report-rigveda-mvp.ts",
     "test": "vitest run",
     "vercel-build": "npm run db:prepare:vercel && DATABASE_URL=file:./dev.db npm run build",
     "postinstall": "prisma generate"

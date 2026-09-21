@@ -32,6 +32,94 @@
     "themes": ["nature", "ritual", "gods"]
   },
   {
+    "mandala": 1,
+    "sukta": 24,
+    "title": "Varuṇa and release from bonds",
+    "kind": "Deity hymn",
+    "context": "A prayer to Varuṇa for knowledge, mercy, and release.",
+    "themes": ["gods", "cosmos", "philosophy"]
+  },
+  {
+    "mandala": 1,
+    "sukta": 113,
+    "title": "Uṣas, the Dawn",
+    "kind": "Deity hymn",
+    "context": "A dawn hymn joining awakening and radiance with the measure of mortal days.",
+    "themes": ["nature", "gods", "women", "death"]
+  },
+  {
+    "mandala": 2,
+    "sukta": 33,
+    "title": "Rudra",
+    "kind": "Deity hymn",
+    "context": "A careful praise of fierce Rudra that asks for protection and healing remedies.",
+    "themes": ["gods", "nature"]
+  },
+  {
+    "mandala": 7,
+    "sukta": 75,
+    "title": "Uṣas",
+    "kind": "Dawn hymn",
+    "context": "Dawn reveals the world and wakes its inhabitants.",
+    "themes": ["nature", "gods", "women"]
+  },
+  {
+    "mandala": 7,
+    "sukta": 86,
+    "title": "Varuṇa and confession",
+    "kind": "Deity hymn",
+    "context": "The poet asks what offence has angered Varuṇa and seeks release.",
+    "themes": ["gods", "cosmos", "philosophy"]
+  },
+  {
+    "mandala": 7,
+    "sukta": 103,
+    "title": "The Frog Hymn",
+    "kind": "Seasonal hymn",
+    "context": "Frogs call after the rains and are compared with ritual reciters.",
+    "themes": ["nature", "ritual"]
+  },
+  {
+    "mandala": 8,
+    "sukta": 48,
+    "title": "We have drunk Soma",
+    "kind": "Soma hymn",
+    "context": "A hymn of Soma's exhilaration and promise.",
+    "themes": ["ritual", "gods"]
+  },
+  {
+    "mandala": 9,
+    "sukta": 2,
+    "title": "Soma Pavamāna",
+    "kind": "Soma hymn",
+    "context": "Soma is praised while flowing and being purified.",
+    "themes": ["ritual", "gods", "nature"]
+  },
+  {
+    "mandala": 9,
+    "sukta": 113,
+    "title": "Soma and the deathless realm",
+    "kind": "Soma hymn",
+    "context": "A hymn asking Soma to place the singer in realms of light and immortality.",
+    "themes": ["ritual", "gods", "death"]
+  },
+  {
+    "mandala": 10,
+    "sukta": 34,
+    "title": "The Gambler's Lament",
+    "kind": "Human condition",
+    "context": "A first-person poem about dice, compulsion, estrangement, and return to work.",
+    "themes": ["society", "philosophy"]
+  },
+  {
+    "mandala": 10,
+    "sukta": 125,
+    "title": "Vāc Sūkta",
+    "kind": "Divine speech",
+    "context": "A first-person hymn in which Vāc declares her reach among gods and worlds.",
+    "themes": ["women", "gods", "ritual", "philosophy"]
+  },
+  {
     "mandala": 10,
     "sukta": 10,
     "title": "Yama and Yamī",

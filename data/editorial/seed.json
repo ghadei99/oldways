@@ -27,6 +27,11 @@
     { "slug": "rivers", "name": "Rivers", "kind": "figure" },
     { "slug": "hiranyagarbha", "name": "Hiraṇyagarbha", "kind": "concept" },
     { "slug": "surya", "name": "Sūryā", "kind": "deity" }
+    ,{ "slug": "soma", "name": "Soma", "kind": "deity" }
+    ,{ "slug": "ushas", "name": "Uṣas", "kind": "deity" }
+    ,{ "slug": "varuna", "name": "Varuṇa", "kind": "deity" }
+    ,{ "slug": "rudra", "name": "Rudra", "kind": "deity" }
+    ,{ "slug": "vac", "name": "Vāc", "kind": "deity" }
   ],
   "stories": [
     {
@@ -406,7 +411,7 @@
     },
     {
       "slug": "indra-and-vrtra",
-      "title": "Indra and Vṛtra",
+      "title": "Indra and the Release of the Waters",
       "subtitle": "Hymns that name the slaying of the dragon and the release of waters",
       "kind": "Myth",
       "primarySourceLabel": "Rigveda 1.32; 2.12",
@@ -415,9 +420,16 @@
       "themeSlugs": ["gods", "war", "nature", "cosmos"],
       "figureSlugs": ["indra", "vrtra"],
       "relatedStorySlugs": ["sarama-and-the-panis"],
-      "primaryRange": ["RV.1.32.1", "RV.1.32.2", "RV.1.32.11", "RV.2.12.1", "RV.2.12.3"],
+      "primaryRange": ["RV.1.32.1", "RV.1.32.2", "RV.1.32.3", "RV.1.32.4", "RV.1.32.5", "RV.1.32.11", "RV.2.12.1", "RV.2.12.3"],
       "body": {
         "blocks": [
+          {
+            "id": "waters",
+            "type": "paragraph",
+            "layer": "source_reading",
+            "text": "The following verses keep action and landscape together: Indra drinks Soma, takes up the bolt, strikes the first-born of the dragons, and the obstructed waters move onward. {ref:RV.1.32.3} {ref:RV.1.32.4} {ref:RV.1.32.5}",
+            "refs": ["RV.1.32.3", "RV.1.32.4", "RV.1.32.5"]
+          },
           {
             "id": "intro",
             "type": "paragraph",
@@ -457,7 +469,7 @@
             "id": "later",
             "type": "note",
             "layer": "later_tradition",
-            "text": "Later epic and Purāṇic literature give Indra a court, a fall, and further Vṛtra episodes, and they often equate other fierce gods with later Śiva. Those identifications are later. Rigvedic Rudra is not silently the same as every later Śiva story, and Rigvedic Indra is not automatically the later king of a heavenly city."
+            "text": "Later epic and Purāṇic literature turns the encounter into fuller narratives about Indra, Vṛtra, and divine kingship. Those retellings belong to later tradition; this page stays with the Rigvedic hymns and their repeated image of waters released."
           }
         ]
       }
@@ -648,6 +660,186 @@
           }
         ]
       }
+    },
+    {
+      "slug": "agni-opening-hymn",
+      "title": "Agni at the Opening",
+      "subtitle": "The first hymn and the work of the ritual fire",
+      "kind": "Hymn guide",
+      "primarySourceLabel": "Rigveda 1.1.1–9",
+      "summary": "The Rigveda opens by addressing Agni as priest, divine minister, and bearer of offerings. The hymn defines a relationship of daily approach rather than narrating a later birth-story of the fire god.",
+      "layerNote": "A guide to Rigveda 1.1. Later ritual systems and Purāṇic biographies are labelled separately.",
+      "themeSlugs": ["ritual", "gods"],
+      "figureSlugs": ["agni"],
+      "relatedStorySlugs": ["funeral-hymn", "soma-flowing"],
+      "primaryRange": ["RV.1.1.1", "RV.1.1.2", "RV.1.1.3", "RV.1.1.4", "RV.1.1.5", "RV.1.1.6", "RV.1.1.7", "RV.1.1.8", "RV.1.1.9"],
+      "body": { "blocks": [
+        { "id": "intro", "type": "paragraph", "layer": "editorial", "text": "The collection begins with an invocation rather than a creation story. Agni is addressed through the offices he performs between worshippers and gods." },
+        { "id": "priest", "type": "paragraph", "layer": "source_reading", "text": "The first verse calls Agni the household priest of the sacrifice, the divine officiant, and the bestower of treasure. {ref:RV.1.1.1} The next verses connect him with riches, offering, and access to the gods. {ref:RV.1.1.2} {ref:RV.1.1.3} {ref:RV.1.1.4}", "refs": ["RV.1.1.1", "RV.1.1.2", "RV.1.1.3", "RV.1.1.4"] },
+        { "id": "spotlight", "type": "source_spotlight", "layer": "source_reading", "text": "The opening mantra establishes Agni by ritual function.", "spotlightRef": "RV.1.1.1", "refs": ["RV.1.1.1"] },
+        { "id": "daily", "type": "paragraph", "layer": "source_reading", "text": "The singers approach Agni day by day, at night and dawn; the hymn closes by asking him to be accessible like a father to a son. {ref:RV.1.1.7} {ref:RV.1.1.8} {ref:RV.1.1.9}", "refs": ["RV.1.1.7", "RV.1.1.8", "RV.1.1.9"] },
+        { "id": "later", "type": "note", "layer": "later_tradition", "text": "Later ritual texts systematize multiple sacred fires, and later stories give Agni extended biographies. They illuminate reception but do not replace this compact opening address." }
+      ] }
+    },
+    {
+      "slug": "soma-flowing",
+      "title": "Soma Flowing",
+      "subtitle": "Pressing, purification, exhilaration, and immortality",
+      "kind": "Hymn guide",
+      "primarySourceLabel": "Rigveda 9.2; 8.48; 9.113",
+      "summary": "Soma is plant, pressed drink, flowing power, and deity in the Rigveda. These hymns praise its purification and effects without settling the modern botanical identity of the plant.",
+      "layerNote": "The botanical identity of Soma remains disputed; later identifications are not asserted as Rigvedic fact.",
+      "themeSlugs": ["ritual", "gods", "nature"],
+      "figureSlugs": ["soma"],
+      "relatedStorySlugs": ["agni-opening-hymn"],
+      "primaryRange": ["RV.9.2.1", "RV.9.2.3", "RV.9.2.7", "RV.9.2.10", "RV.8.48.3", "RV.9.113.7"],
+      "body": { "blocks": [
+        { "id": "intro", "type": "paragraph", "layer": "editorial", "text": "Maṇḍala 9 is organized around Soma Pavamāna — Soma while being purified and flowing. Its poetry repeatedly joins material pressing with divine agency." },
+        { "id": "flow", "type": "paragraph", "layer": "source_reading", "text": "Soma is urged to flow for Indra and the gods, purified through the filter and associated with strength and prize. {ref:RV.9.2.1} {ref:RV.9.2.3} {ref:RV.9.2.7} {ref:RV.9.2.10}", "refs": ["RV.9.2.1", "RV.9.2.3", "RV.9.2.7", "RV.9.2.10"] },
+        { "id": "spotlight", "type": "source_spotlight", "layer": "source_reading", "text": "Read the opening of 9.2 as poetry of a substance in motion and a god addressed.", "spotlightRef": "RV.9.2.1", "refs": ["RV.9.2.1"] },
+        { "id": "effects", "type": "paragraph", "layer": "source_reading", "text": "Elsewhere the drinkers say that they have drunk Soma and become immortal, while another hymn asks for the deathless realm of light. {ref:RV.8.48.3} {ref:RV.9.113.7}", "refs": ["RV.8.48.3", "RV.9.113.7"] },
+        { "id": "later", "type": "note", "layer": "later_tradition", "text": "Later traditions identify Soma with the moon and propose particular plants. Those histories are important but do not justify presenting one modern botanical candidate as certain." }
+      ] }
+    },
+    {
+      "slug": "ushas-dawn",
+      "title": "Uṣas, the Dawn",
+      "subtitle": "Radiance, awakening, and the measure of mortal days",
+      "kind": "Deity portrait",
+      "primarySourceLabel": "Rigveda 1.113; 7.75",
+      "summary": "The dawn hymns praise Uṣas as brilliant and life-awakening, yet each dawn also marks the passing of a mortal day.",
+      "layerNote": "A Rigvedic deity portrait; later goddess genealogies are not read backward into these hymns.",
+      "themeSlugs": ["nature", "gods", "women", "death"],
+      "figureSlugs": ["ushas"],
+      "relatedStorySlugs": ["pururavas-and-urvashi"],
+      "primaryRange": ["RV.1.113.1", "RV.1.113.5", "RV.1.113.10", "RV.1.113.13", "RV.7.75.5"],
+      "body": { "blocks": [
+        { "id": "intro", "type": "paragraph", "layer": "editorial", "text": "Uṣas is not merely a backdrop. The poets address dawn as a goddess whose recurring arrival reveals creatures, work, and time." },
+        { "id": "arrival", "type": "paragraph", "layer": "source_reading", "text": "Her light appears and opens the way; she wakes living beings and makes paths visible. {ref:RV.1.113.1} {ref:RV.1.113.5} {ref:RV.7.75.5}", "refs": ["RV.1.113.1", "RV.1.113.5", "RV.7.75.5"] },
+        { "id": "spotlight", "type": "source_spotlight", "layer": "source_reading", "text": "The opening verse places Dawn in a succession of light and darkness.", "spotlightRef": "RV.1.113.1", "refs": ["RV.1.113.1"] },
+        { "id": "mortality", "type": "paragraph", "layer": "source_reading", "text": "The same beauty measures human finitude: dawns have shone before and will shine after, while each appearance diminishes the span allotted to mortals. {ref:RV.1.113.10} {ref:RV.1.113.13}", "refs": ["RV.1.113.10", "RV.1.113.13"] },
+        { "id": "later", "type": "note", "layer": "later_tradition", "text": "Later literature places Uṣas in broader divine genealogies. Here the evidence is the dawn hymns themselves: praise intertwined with mortality." }
+      ] }
+    },
+    {
+      "slug": "varuna-and-order",
+      "title": "Varuṇa and the Bonds of Order",
+      "subtitle": "Cosmic watching, confession, and release",
+      "kind": "Deity portrait",
+      "primarySourceLabel": "Rigveda 1.24; 7.86",
+      "summary": "Varuṇa’s hymns join cosmic sovereignty with moral anxiety: the speaker asks what offence has been committed and seeks release from binding.",
+      "layerNote": "Later simplification of Varuṇa as only a water god is not projected onto the Rigvedic hymns.",
+      "themeSlugs": ["gods", "cosmos", "philosophy"],
+      "figureSlugs": ["varuna"],
+      "relatedStorySlugs": ["funeral-hymn"],
+      "primaryRange": ["RV.1.24.10", "RV.1.24.11", "RV.1.24.15", "RV.7.86.3", "RV.7.86.4", "RV.7.86.5"],
+      "body": { "blocks": [
+        { "id": "intro", "type": "paragraph", "layer": "editorial", "text": "Varuṇa is addressed as an all-seeing sovereign whose order encompasses the sky and human conduct. The poems also sound unusually personal." },
+        { "id": "bonds", "type": "paragraph", "layer": "source_reading", "text": "The poet describes Varuṇa’s cosmic knowledge and asks that the upper, middle, and lower bonds be loosened. {ref:RV.1.24.10} {ref:RV.1.24.11} {ref:RV.1.24.15}", "refs": ["RV.1.24.10", "RV.1.24.11", "RV.1.24.15"] },
+        { "id": "spotlight", "type": "source_spotlight", "layer": "source_reading", "text": "In 7.86 the speaker asks directly what offence has brought divine displeasure.", "spotlightRef": "RV.7.86.4", "refs": ["RV.7.86.4"] },
+        { "id": "confession", "type": "paragraph", "layer": "source_reading", "text": "The inquiry becomes confession: inherited fault, wine, anger, dice, or heedlessness may lead a person astray; the prayer asks for freedom from that wrong. {ref:RV.7.86.3} {ref:RV.7.86.4} {ref:RV.7.86.5}", "refs": ["RV.7.86.3", "RV.7.86.4", "RV.7.86.5"] },
+        { "id": "later", "type": "note", "layer": "later_tradition", "text": "Later iconography and narrative frequently emphasize Varuṇa’s association with waters. That is later reception, not a reason to erase the sovereignty, bonds, and confession central here." }
+      ] }
+    },
+    {
+      "slug": "rudra-rigvedic",
+      "title": "Rudra in the Rigveda",
+      "subtitle": "Fierce, healing, and approached with careful praise",
+      "kind": "Deity portrait",
+      "primarySourceLabel": "Rigveda 2.33",
+      "summary": "Rigveda 2.33 addresses Rudra as formidable and brilliant, asks that his weapons spare the community, and praises his healing remedies. Later Śiva theology is labelled as later reception.",
+      "layerNote": "Strictly Rigvedic portrait. Rudra’s later identification and development as Śiva is not treated as already complete in this hymn.",
+      "themeSlugs": ["gods", "nature"],
+      "figureSlugs": ["rudra"],
+      "relatedStorySlugs": ["indra-and-vrtra"],
+      "primaryRange": ["RV.2.33.1", "RV.2.33.4", "RV.2.33.9", "RV.2.33.10", "RV.2.33.14", "RV.2.33.15"],
+      "body": { "blocks": [
+        { "id": "intro", "type": "paragraph", "layer": "editorial", "text": "The hymn’s Rudra cannot be reduced either to wrath or to a later name of Śiva. Praise negotiates with a power who wounds and heals." },
+        { "id": "spare", "type": "paragraph", "layer": "source_reading", "text": "The singer seeks welfare for the household and asks Rudra not to strike children, adults, parents, or cattle. {ref:RV.2.33.1} {ref:RV.2.33.9} {ref:RV.2.33.10}", "refs": ["RV.2.33.1", "RV.2.33.9", "RV.2.33.10"] },
+        { "id": "spotlight", "type": "source_spotlight", "layer": "source_reading", "text": "The praise calls Rudra the best physician of physicians and asks for his remedies.", "spotlightRef": "RV.2.33.4", "refs": ["RV.2.33.4"] },
+        { "id": "remedies", "type": "paragraph", "layer": "source_reading", "text": "The close again asks that the missile pass by and that healing medicines be granted. {ref:RV.2.33.14} {ref:RV.2.33.15}", "refs": ["RV.2.33.14", "RV.2.33.15"] },
+        { "id": "later", "type": "note", "layer": "later_tradition", "text": "Rudra becomes deeply identified with Śiva in later Vedic and post-Vedic tradition. That history should be stated, not used to import the entire later mythology into Rigveda 2.33." }
+      ] }
+    },
+    {
+      "slug": "vac-sukta",
+      "title": "Vāc Speaks",
+      "subtitle": "A first-person hymn of speech and power",
+      "kind": "Divine speech",
+      "primarySourceLabel": "Rigveda 10.125",
+      "summary": "In Rigveda 10.125 the speaker identifies herself with divine powers, sustains gods and peoples, and declares the reach of her speech.",
+      "layerNote": "The first-person voice belongs to the hymn. Later goddess systems are reception, not silently substituted for it.",
+      "themeSlugs": ["women", "gods", "ritual", "philosophy"],
+      "figureSlugs": ["vac"],
+      "relatedStorySlugs": ["nasadiya-sukta"],
+      "primaryRange": ["RV.10.125.1", "RV.10.125.3", "RV.10.125.5", "RV.10.125.7", "RV.10.125.8"],
+      "body": { "blocks": [
+        { "id": "intro", "type": "paragraph", "layer": "editorial", "text": "The poem is remarkable for its sustained first person. The speaker does not need an editorial narrator to grant her agency; the declarations are the structure of the hymn." },
+        { "id": "among-gods", "type": "paragraph", "layer": "source_reading", "text": "She moves with Rudras, Vasus, Ādityas, and all gods, and bears Mitra, Varuṇa, Indra, Agni, and the Aśvins. {ref:RV.10.125.1}", "refs": ["RV.10.125.1"] },
+        { "id": "spotlight", "type": "source_spotlight", "layer": "source_reading", "text": "The speaker names herself queen, gatherer of treasures, and first among those worthy of worship.", "spotlightRef": "RV.10.125.3", "refs": ["RV.10.125.3"] },
+        { "id": "reach", "type": "paragraph", "layer": "source_reading", "text": "She says that the one she loves becomes powerful; she gives birth to the father on the world’s summit, and her greatness extends beyond earth and heaven. {ref:RV.10.125.5} {ref:RV.10.125.7} {ref:RV.10.125.8}", "refs": ["RV.10.125.5", "RV.10.125.7", "RV.10.125.8"] },
+        { "id": "later", "type": "note", "layer": "later_tradition", "text": "Later Śākta traditions read this hymn within developed goddess theology. That is a major reception history, distinct from describing only what this Rigvedic poem says." }
+      ] }
+    },
+    {
+      "slug": "gambler-and-dice",
+      "title": "The Gambler and the Dice",
+      "subtitle": "Compulsion, loss, and an appeal to return home",
+      "kind": "Human condition",
+      "primarySourceLabel": "Rigveda 10.34",
+      "summary": "The dice hymn speaks from inside gambling compulsion: exhilaration turns to debt, estrangement, and a final instruction to work the land instead.",
+      "layerNote": "Read as a Rigvedic poem of gambling and social damage, not as a modern clinical diagnosis.",
+      "themeSlugs": ["society", "philosophy"],
+      "figureSlugs": [],
+      "relatedStorySlugs": ["varuna-and-order"],
+      "primaryRange": ["RV.10.34.1", "RV.10.34.3", "RV.10.34.7", "RV.10.34.10", "RV.10.34.13", "RV.10.34.14"],
+      "body": { "blocks": [
+        { "id": "intro", "type": "paragraph", "layer": "editorial", "text": "The objects are small, but the poem makes them agents: brown dice from the vibhīdaka tree seize the speaker’s desire and reorder his household." },
+        { "id": "loss", "type": "paragraph", "layer": "source_reading", "text": "The gambler remembers their exhilaration, then describes a wife abandoned and a family that disowns him. {ref:RV.10.34.1} {ref:RV.10.34.3} The dice hook, burn, and overcome even the powerful. {ref:RV.10.34.7}", "refs": ["RV.10.34.1", "RV.10.34.3", "RV.10.34.7"] },
+        { "id": "spotlight", "type": "source_spotlight", "layer": "source_reading", "text": "The poem’s practical turn tells the gambler: do not play with dice; cultivate the field.", "spotlightRef": "RV.10.34.13", "refs": ["RV.10.34.13"] },
+        { "id": "end", "type": "paragraph", "layer": "source_reading", "text": "The speaker sees another man at his wife’s side and spends the night in distress; at the end he addresses the dice themselves and asks for their favour or restraint. {ref:RV.10.34.10} {ref:RV.10.34.14}", "refs": ["RV.10.34.10", "RV.10.34.14"] },
+        { "id": "later", "type": "note", "layer": "later_tradition", "text": "The great dice games of the Mahābhārata are later narrative. They should not be treated as the plot of this first-person Rigvedic lament." }
+      ] }
+    },
+    {
+      "slug": "frog-hymn",
+      "title": "The Frog Hymn",
+      "subtitle": "Voices after rain, heard beside ritual recitation",
+      "kind": "Poetic comparison",
+      "primarySourceLabel": "Rigveda 7.103",
+      "summary": "After a year of silence, rain awakens the frogs. The hymn compares their answering voices with students or priests reciting, mixing close observation and ritual wit.",
+      "layerNote": "The ritual comparison is in the hymn; a single allegorical key is not imposed on every detail.",
+      "themeSlugs": ["nature", "ritual"],
+      "figureSlugs": [],
+      "relatedStorySlugs": ["ushas-dawn"],
+      "primaryRange": ["RV.7.103.1", "RV.7.103.2", "RV.7.103.6", "RV.7.103.7", "RV.7.103.10"],
+      "body": { "blocks": [
+        { "id": "intro", "type": "paragraph", "layer": "editorial", "text": "The hymn watches an ordinary seasonal event with extraordinary attention: frogs reappear and call when the rains arrive." },
+        { "id": "rain", "type": "paragraph", "layer": "source_reading", "text": "Having lain silent for a year, the frogs raise their voices when the heavenly water reaches them, one answering another. {ref:RV.7.103.1} {ref:RV.7.103.2}", "refs": ["RV.7.103.1", "RV.7.103.2"] },
+        { "id": "spotlight", "type": "source_spotlight", "layer": "source_reading", "text": "The opening announces the year-long silence and the return of voice.", "spotlightRef": "RV.7.103.1", "refs": ["RV.7.103.1"] },
+        { "id": "comparison", "type": "paragraph", "layer": "source_reading", "text": "Their alternating sounds are compared with pupils repeating a teacher and with priests around the Soma vessel. {ref:RV.7.103.6} {ref:RV.7.103.7} The closing asks the frogs for life and prosperity. {ref:RV.7.103.10}", "refs": ["RV.7.103.6", "RV.7.103.7", "RV.7.103.10"] },
+        { "id": "scholarly", "type": "note", "layer": "scholarly", "text": "Readers disagree over how satirical the priestly comparison is. The comparison itself is textual; its exact tone remains interpretive." }
+      ] }
+    },
+    {
+      "slug": "creation-alternatives",
+      "title": "Three Rigvedic Beginnings",
+      "subtitle": "Nāsadīya, Hiraṇyagarbha, and Puruṣa are not one account",
+      "kind": "Comparative guide",
+      "primarySourceLabel": "Rigveda 10.129; 10.121; 10.90",
+      "summary": "Three famous hymns approach origin differently: unresolved inquiry, a golden embryo and repeated divine question, and a cosmic person offered in sacrifice.",
+      "layerNote": "Comparison preserves disagreement. It does not harmonize the hymns into one chronological creation story.",
+      "themeSlugs": ["creation", "cosmos", "philosophy", "ritual"],
+      "figureSlugs": ["hiranyagarbha", "purusha"],
+      "relatedStorySlugs": ["nasadiya-sukta", "hiranyagarbha", "purusha-sukta"],
+      "primaryRange": ["RV.10.129.1", "RV.10.129.7", "RV.10.121.1", "RV.10.121.10", "RV.10.90.6", "RV.10.90.12"],
+      "body": { "blocks": [
+        { "id": "intro", "type": "paragraph", "layer": "editorial", "text": "Calling all three hymns ‘creation myths’ can hide their strongest feature: they do not make the same claim or use the same poetic strategy." },
+        { "id": "nasadiya", "type": "paragraph", "layer": "source_reading", "text": "The Nāsadīya begins before the ordinary opposition of being and non-being and ends by questioning whether even the highest overseer knows the origin. {ref:RV.10.129.1} {ref:RV.10.129.7}", "refs": ["RV.10.129.1", "RV.10.129.7"] },
+        { "id": "spotlight", "type": "source_spotlight", "layer": "source_reading", "text": "Hiraṇyagarbha offers a different opening: a golden embryo arose in the beginning and upheld earth and heaven.", "spotlightRef": "RV.10.121.1", "refs": ["RV.10.121.1"] },
+        { "id": "alternatives", "type": "paragraph", "layer": "source_reading", "text": "The received Hiraṇyagarbha hymn closes with Prajāpati. {ref:RV.10.121.10} The Puruṣa hymn instead makes sacrifice the generative action and maps social orders onto the cosmic body. {ref:RV.10.90.6} {ref:RV.10.90.12}", "refs": ["RV.10.121.10", "RV.10.90.6", "RV.10.90.12"] },
+        { "id": "later", "type": "note", "layer": "later_tradition", "text": "Later cosmologies can coordinate creator, cosmic egg, sacrifice, and metaphysical principles. This page resists treating that later synthesis as the original argument of each hymn." }
+      ] }
     }
   ]
 }

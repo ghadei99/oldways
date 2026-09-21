@@ -14,6 +14,7 @@ export async function searchLibrary(query: string) {
 
   const translationFilter = translationWhere(includeDevelopmentContent());
   const allowSanskritBody = includeResearchSanskrit();
+  const isIndicQuery = /[\u0900-\u097f\u0980-\u09ff\u0b00-\u0b7f]/u.test(q);
   const parsed = parseCanonicalReference(q);
   const needles = searchNeedles(q);
 
@@ -60,6 +61,19 @@ export async function searchLibrary(query: string) {
                 ]
               : []),
             { canonicalReference: { contains: q.replace(/\s+/g, ".") } },
+            ...(isIndicQuery
+              ? [
+                  {
+                    translations: {
+                      some: {
+                        language: { in: ["hi", "or", "bn"] },
+                        text: { contains: q },
+                        ...translationFilter,
+                      },
+                    },
+                  },
+                ]
+              : []),
             ...(matchingSuktaIds.length
               ? [{ divisionId: { in: matchingSuktaIds } }]
               : []),

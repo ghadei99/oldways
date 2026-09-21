@@ -10,7 +10,8 @@ import {
   findDuplicateCanonicals,
   parseGretilRigvedaXml,
 } from "@/lib/corpus/parse-gretil-rigveda";
-import { parseStoryBody, splitTextWithRefs } from "@/lib/story-body";
+import { collectStoryRefs, parseStoryBody, splitTextWithRefs } from "@/lib/story-body";
+import { parseEditorialJsonl } from "@/lib/translations/editorial-jsonl";
 import { iastToDevanagari } from "@/lib/corpus/transliterate";
 
 const fixture = `<?xml version="1.0"?>
@@ -94,6 +95,55 @@ describe("story references", () => {
     const refs = splitTextWithRefs(body.blocks[0].text).filter((p) => p.type === "ref");
     expect(refs[0]?.value).toBe("RV.10.129.1");
     expect(passageHref(refs[0].value)).toBe("/texts/rigveda/10/129/1");
+  });
+
+  it("keeps the completion sprint at 19 fully source-backed stories", () => {
+    const editorial = JSON.parse(
+      readFileSync(new URL("../../../data/editorial/seed.json", import.meta.url), "utf8"),
+    ) as {
+      stories: { slug: string; primaryRange: string[]; body: { blocks: unknown[] } }[];
+    };
+    const xml = readFileSync(
+      new URL("../../../data/raw/rigveda/sa_Rgveda-edAufrecht.xml", import.meta.url),
+      "utf8",
+    );
+    const corpusRefs = new Set(
+      parseGretilRigvedaXml(xml, { expectComplete: true }).verses.map(
+        (verse) => verse.canonicalReference,
+      ),
+    );
+    expect(editorial.stories).toHaveLength(19);
+    expect(new Set(editorial.stories.map((story) => story.slug)).size).toBe(19);
+    for (const story of editorial.stories) {
+      const body = parseStoryBody(JSON.stringify(story.body));
+      const refs = [...story.primaryRange, ...collectStoryRefs(body)];
+      expect(refs.length, story.slug).toBeGreaterThan(0);
+      for (const ref of refs) {
+        expect(parseCanonicalReference(ref), `${story.slug}: ${ref}`).not.toBeNull();
+        expect(corpusRefs.has(ref), `${story.slug}: ${ref}`).toBe(true);
+      }
+    }
+  });
+
+  it("has wrapping-safe reference chips on narrow screens", () => {
+    const css = readFileSync(new URL("../../app/globals.css", import.meta.url), "utf8");
+    expect(css).toMatch(/\.ref-chip[\s\S]*max-width:\s*100%/);
+    expect(css).toMatch(/\.ref-chip[\s\S]*overflow-wrap:\s*anywhere/);
+  });
+});
+
+describe("editorial translation JSONL", () => {
+  it("contains 8 valid, unique passages in each Indic language", () => {
+    const input = readFileSync(
+      new URL("../../../data/translations/oldways-editorial.jsonl", import.meta.url),
+      "utf8",
+    );
+    const parsed = parseEditorialJsonl(input);
+    expect(parsed.errors).toEqual([]);
+    expect(parsed.rows).toHaveLength(24);
+    for (const language of ["hi", "or", "bn"]) {
+      expect(parsed.rows.filter((row) => row.language === language)).toHaveLength(8);
+    }
   });
 });
 

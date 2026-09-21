@@ -8,7 +8,7 @@ import {
   splitTextWithRefs,
   type StoryLayer,
 } from "@/lib/story-body";
-import { formatReference, passageHref, suktaHref } from "@/lib/references";
+import { formatReference, suktaHref } from "@/lib/references";
 import type { PassagePreview } from "@/lib/stories/passage-preview";
 import Link from "next/link";
 

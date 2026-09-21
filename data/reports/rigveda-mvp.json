@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-09-21T07:37:20.775Z",
+  "corpusPassages": 10552,
+  "stories": 19,
+  "storyReferenceRows": 132,
+  "distinctStoryReferences": 126,
+  "duplicateStoryReferenceRows": 0,
+  "brokenStoryReferences": 0,
+  "english": {
+    "withGriffith": 10273,
+    "withoutGriffith": 279,
+    "ambiguous": 2,
+    "unmatchedSourceLines": 219
+  },
+  "translations": {
+    "hi": {
+      "machine": 8,
+      "reviewed": 0,
+      "available": 8,
+      "missing": 10544
+    },
+    "or": {
+      "machine": 8,
+      "reviewed": 0,
+      "available": 8,
+      "missing": 10544
+    },
+    "bn": {
+      "machine": 8,
+      "reviewed": 0,
+      "available": 8,
+      "missing": 10544
+    }
+  }
+}

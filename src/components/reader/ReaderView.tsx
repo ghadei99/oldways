@@ -135,6 +135,8 @@ export function ReaderView({ data }: { data: ReaderPayload }) {
   const [filter, setFilter] = useState("");
 
   useEffect(() => {
+    // Hydrate the browser-only persisted preference after the server render.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPrefs(loadPrefs());
   }, []);
 
@@ -274,13 +276,17 @@ export function ReaderView({ data }: { data: ReaderPayload }) {
                 <button
                   key={l.id}
                   type="button"
+                  disabled={!available}
+                  title={available ? undefined : `${l.native} unavailable for this mantra`}
                   onClick={() =>
                     setPrefs((p) => ({ ...p, lang: l.id, translatorId: "any" }))
                   }
                   className={`border px-2.5 py-1 text-xs tracking-wide ${
                     prefs.lang === l.id
                       ? "border-indigo bg-indigo text-paper-raised"
-                      : "border-rule text-ink-soft hover:border-ink/40"
+                      : available
+                        ? "border-rule text-ink-soft hover:border-ink/40"
+                        : "cursor-not-allowed border-rule text-ink-soft opacity-45"
                   }`}
                   aria-pressed={prefs.lang === l.id}
                 >
@@ -376,11 +382,28 @@ export function ReaderView({ data }: { data: ReaderPayload }) {
                       : ""}
                   </p>
                   {translation ? (
-                    <p
-                      className={`mt-2 text-[1.05rem] leading-8 ${scriptClass(prefs.lang)}`}
-                    >
-                      {translation.text}
-                    </p>
+                    <>
+                      <p
+                        className={`mt-2 text-[1.05rem] leading-8 ${scriptClass(prefs.lang)}`}
+                      >
+                        {translation.text}
+                      </p>
+                      {translation.status === "MACHINE_ASSISTED" ||
+                      translation.status === "EDITORIAL" ? (
+                        <details className="mt-3 text-xs leading-5 text-ink-soft">
+                          <summary className="cursor-pointer text-indigo">
+                            Translation method and review status
+                          </summary>
+                          <p className="mt-2">
+                            Oldways Editorial Translation · {translation.status === "EDITORIAL"
+                              ? "editorially reviewed"
+                              : "machine-assisted · review pending"}. This is a
+                            project-owned rendering, not a historical published
+                            translation.
+                          </p>
+                        </details>
+                      ) : null}
+                    </>
                   ) : (
                     <p className="mt-2 text-sm text-ink-soft">
                       {languageLabel(prefs.lang)} translation unavailable for
@@ -689,6 +712,12 @@ function ContextPanel({
                       ) : null}
                       {translation.isDemo || translation.visibility === "DEVELOPMENT" ? (
                         <p>Development translation</p>
+                      ) : null}
+                      {translation.status === "MACHINE_ASSISTED" ? (
+                        <p>Machine-assisted · editorial review pending</p>
+                      ) : null}
+                      {translation.status === "EDITORIAL" ? (
+                        <p>Editorially reviewed</p>
                       ) : null}
                       <p>
                         Digital transcription:{" "}

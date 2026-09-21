@@ -108,32 +108,32 @@ model Translator {
 }
 
 model Source {
-  id                      String           @id @default(cuid())
-  slug                    String           @unique
-  corpusId                String?
-  corpus                  Corpus?          @relation(fields: [corpusId], references: [id], onDelete: SetNull)
-  title                   String
-  editor                  String?
-  translatorName          String?
-  publisher               String?
-  year                    Int?
-  edition                 String?
-  url                     String?
-  licence                 String?
-  copyrightStatus         String
-  attributionText         String?
-  attributionRequired     Boolean          @default(true)
-  dateAccessed            DateTime?
-  internalNotes           String?
-  kind                    String           @default("edition")
-  visibility              String           @default("PRODUCTION")
-  commercialUseAllowed    Boolean          @default(false)
-  digitalProject          String?
-  transformationNotes     String?
-  translations            Translation[]    @relation("TranslationDigitalSource")
-  historicalTranslations  Translation[]    @relation("TranslationHistoricalWork")
-  passages                Passage[]        @relation("PassageTextSource")
-  witnesses               PassageWitness[]
+  id                     String           @id @default(cuid())
+  slug                   String           @unique
+  corpusId               String?
+  corpus                 Corpus?          @relation(fields: [corpusId], references: [id], onDelete: SetNull)
+  title                  String
+  editor                 String?
+  translatorName         String?
+  publisher              String?
+  year                   Int?
+  edition                String?
+  url                    String?
+  licence                String?
+  copyrightStatus        String
+  attributionText        String?
+  attributionRequired    Boolean          @default(true)
+  dateAccessed           DateTime?
+  internalNotes          String?
+  kind                   String           @default("edition")
+  visibility             String           @default("PRODUCTION")
+  commercialUseAllowed   Boolean          @default(false)
+  digitalProject         String?
+  transformationNotes    String?
+  translations           Translation[]    @relation("TranslationDigitalSource")
+  historicalTranslations Translation[]    @relation("TranslationHistoricalWork")
+  passages               Passage[]        @relation("PassageTextSource")
+  witnesses              PassageWitness[]
 }
 
 model ImportRun {
@@ -148,28 +148,29 @@ model ImportRun {
 }
 
 model Translation {
-  id                 String      @id @default(cuid())
-  passageId          String
-  passage            Passage     @relation(fields: [passageId], references: [id], onDelete: Cascade)
-  language           String
-  text               String
-  translatorId       String?
-  translator         Translator? @relation(fields: [translatorId], references: [id], onDelete: SetNull)
+  id               String      @id @default(cuid())
+  passageId        String
+  passage          Passage     @relation(fields: [passageId], references: [id], onDelete: Cascade)
+  language         String
+  text             String
+  translatorId     String?
+  translator       Translator? @relation(fields: [translatorId], references: [id], onDelete: SetNull)
   /// Digital transcription of the translation (not the 1896 book itself).
-  sourceId           String?
-  source             Source?     @relation("TranslationDigitalSource", fields: [sourceId], references: [id], onDelete: SetNull)
-  historicalWorkId   String?
-  historicalWork     Source?     @relation("TranslationHistoricalWork", fields: [historicalWorkId], references: [id], onDelete: SetNull)
-  workTitle          String?
-  publicationYear    Int?
-  edition            String?
-  copyrightStatus    String?
-  attribution        String?
-  status             String      @default("UNVERIFIED")
-  visibility         String      @default("DEVELOPMENT")
-  notes              String?
-  isDemo             Boolean     @default(false)
+  sourceId         String?
+  source           Source?     @relation("TranslationDigitalSource", fields: [sourceId], references: [id], onDelete: SetNull)
+  historicalWorkId String?
+  historicalWork   Source?     @relation("TranslationHistoricalWork", fields: [historicalWorkId], references: [id], onDelete: SetNull)
+  workTitle        String?
+  publicationYear  Int?
+  edition          String?
+  copyrightStatus  String?
+  attribution      String?
+  status           String      @default("UNVERIFIED")
+  visibility       String      @default("DEVELOPMENT")
+  notes            String?
+  isDemo           Boolean     @default(false)
 
+  @@unique([passageId, language, translatorId])
   @@index([passageId, language])
   @@index([visibility, status])
 }

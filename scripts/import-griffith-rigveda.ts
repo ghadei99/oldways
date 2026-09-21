@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { PrismaClient } from "@prisma/client";
 import { TRANSLATION_STATUS, VISIBILITY } from "../src/lib/content/visibility";
@@ -220,6 +220,25 @@ async function main() {
     }
   }
 
+  const coverageReport = {
+    generatedAt: new Date().toISOString(),
+    corpusPassages: rigvedaPassages.length,
+    withGriffith: report.matched,
+    withoutGriffith: report.missingSource.length,
+    ambiguous: report.ambiguous.length,
+    ambiguousReferences: report.ambiguous,
+    unmatchedSourceLines: report.unmatched.length,
+    unmatchedSourceReferences: report.unmatched,
+    parseFailures: report.parseFailure.length,
+    parseFailureReferences: report.parseFailure,
+  };
+  const reportsDir = join(root, "data/reports");
+  mkdirSync(reportsDir, { recursive: true });
+  writeFileSync(
+    join(reportsDir, "griffith-coverage.json"),
+    JSON.stringify(coverageReport, null, 2),
+  );
+
   await prisma.importRun.create({
     data: {
       corpusId: corpus.id,
@@ -230,7 +249,7 @@ async function main() {
       statsJson: JSON.stringify({
         file,
         lines: lines.length,
-        matched: report.matched,
+        ...coverageReport,
         unmatched: report.unmatched.length,
         unmatchedSample: report.unmatched.slice(0, 20),
         ambiguous: report.ambiguous,

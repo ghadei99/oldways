@@ -9,6 +9,7 @@ export function stripWikiMarkup(input: string) {
     .replace(/\b(?:end|start)=stanza\|/g, "")
     .replace(/\{\{sc\|([^}]+)\}\}/gi, "$1")
     .replace(/\{\{[^{}]*\}\}/g, "")
+    .replace(/\}\}/g, "")
     .replace(/\[\[([^|\]]+\|)?([^\]]+)\]\]/g, "$2")
     .replace(/'{2,}/g, "")
     .replace(/<ref\b[^>]*>[\s\S]*?<\/ref>/gi, "")
@@ -118,15 +119,30 @@ export function sectionNameMatchesSukta(name: string, sukta: number) {
 }
 
 export function extractSuktaSections(wikitext: string, sukta: number) {
-  const begins = [...wikitext.matchAll(/<section begin="([^"]+)"\s*\/>/gi)];
+  const begins = [
+    ...wikitext.matchAll(
+      /<section\s+begin\s*=\s*(?:"([^"]+)"|'([^']+)'|([^\s/>]+))\s*\/>/gi,
+    ),
+  ];
   if (!begins.length) return wikitext;
   const pieces: string[] = [];
+  const matching = begins.filter((begin) =>
+    sectionNameMatchesSukta(begin[1] ?? begin[2] ?? begin[3], sukta),
+  );
+  if (!matching.length) return wikitext;
+
+  // ProofreadPage transclusions may put the target section marker only on the
+  // last page. Everything before it is the continuation of the same hymn.
+  const firstIndex = matching[0].index ?? 0;
+  if (firstIndex > 0 && begins[0] === matching[0]) {
+    pieces.push(wikitext.slice(0, firstIndex));
+  }
   for (let i = 0; i < begins.length; i++) {
-    const name = begins[i][1];
+    const name = begins[i][1] ?? begins[i][2] ?? begins[i][3];
     if (!sectionNameMatchesSukta(name, sukta)) continue;
     const start = (begins[i].index ?? 0) + begins[i][0].length;
     const rest = wikitext.slice(start);
-    const next = rest.search(/<section\s+(end|begin)="/i);
+    const next = rest.search(/<section\s+(?:end|begin)\s*=/i);
     const end = next >= 0 ? start + next : wikitext.length;
     pieces.push(wikitext.slice(start, end));
   }

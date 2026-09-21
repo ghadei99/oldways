@@ -110,6 +110,14 @@ export default async function StoriesIndexPage({
         {filtered.map((story) => {
           const body = parseStoryBody(story.body);
           const storyKind = (body.kind ?? "Story") as StoryKind | "Story";
+          const uniqueReferences = [
+            ...new Map(
+              story.references.map((reference) => [
+                reference.passage.canonicalReference,
+                reference,
+              ]),
+            ).values(),
+          ];
           return (
             <li key={story.id} className="border border-rule bg-paper-raised p-6">
               <p className="text-[0.65rem] uppercase tracking-[0.18em] text-ink-soft">
@@ -127,7 +135,7 @@ export default async function StoriesIndexPage({
                 {story.themes.map((t) => t.theme.title).join(" · ")}
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
-                {story.references.slice(0, 4).map((ref) => (
+                {uniqueReferences.slice(0, 4).map((ref) => (
                   <CanonicalRef
                     key={ref.id}
                     compact={ref.passage.canonicalReference}
