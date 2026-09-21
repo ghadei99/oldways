@@ -12,11 +12,13 @@
     "db:seed": "tsx prisma/seed.ts",
     "db:import": "tsx scripts/import-rigveda.ts",
     "db:import:griffith": "tsx scripts/import-griffith-rigveda.ts",
+    "db:prepare:vercel": "tsx scripts/prepare-vercel-db.ts",
     "db:fetch-rv": "tsx scripts/fetch-rigveda-source.ts --skip-if-present",
     "db:fetch-griffith": "tsx scripts/fetch-griffith-wikisource.ts --skip-if-present",
     "db:validate": "tsx scripts/validate-provenance.ts",
     "db:compare-rv": "tsx scripts/compare-rigveda-sources.ts",
     "test": "vitest run",
+    "vercel-build": "npm run db:prepare:vercel && DATABASE_URL=file:./dev.db npm run build",
     "postinstall": "prisma generate"
   },
   "dependencies": {
