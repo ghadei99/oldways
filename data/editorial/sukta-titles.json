@@ -1,0 +1,114 @@
+[
+  {
+    "mandala": 1,
+    "sukta": 1,
+    "title": "Agni",
+    "kind": "Ritual",
+    "context": "Opening hymn of the Rigveda, addressed to Agni.",
+    "themes": ["gods", "ritual"]
+  },
+  {
+    "mandala": 1,
+    "sukta": 32,
+    "title": "Indra and Vṛtra",
+    "kind": "Myth",
+    "context": "A hymn narrating Indra’s slaying of Vṛtra and the release of the waters.",
+    "themes": ["gods", "war", "nature", "cosmos"]
+  },
+  {
+    "mandala": 2,
+    "sukta": 12,
+    "title": "Indra, who slew the dragon",
+    "kind": "Myth",
+    "context": "A hymn identifying Indra by deeds, including the slaying of the dragon and the freeing of rivers.",
+    "themes": ["gods", "war", "nature"]
+  },
+  {
+    "mandala": 3,
+    "sukta": 33,
+    "title": "Viśvāmitra and the Rivers",
+    "kind": "Dialogue",
+    "context": "A dialogue hymn: a seer asks the Vipāś and Śutudrī to lower themselves for a crossing.",
+    "themes": ["nature", "ritual", "gods"]
+  },
+  {
+    "mandala": 10,
+    "sukta": 10,
+    "title": "Yama and Yamī",
+    "kind": "Dialogue",
+    "context": "A dialogue concerning desire, kinship, and cosmic order.",
+    "themes": ["death", "women", "society", "philosophy"]
+  },
+  {
+    "mandala": 10,
+    "sukta": 14,
+    "title": "The funeral hymn",
+    "kind": "Funerary",
+    "context": "A hymn of the funeral: Yama, the path of the departed, and the fathers.",
+    "themes": ["death", "ritual", "gods"]
+  },
+  {
+    "mandala": 10,
+    "sukta": 16,
+    "title": "Agni and the body of the dead",
+    "kind": "Funerary",
+    "context": "A closely related funeral hymn addressing Agni and the burning of the body.",
+    "themes": ["death", "ritual", "gods"]
+  },
+  {
+    "mandala": 10,
+    "sukta": 18,
+    "title": "Burial and the living",
+    "kind": "Funerary",
+    "context": "A closely related funeral hymn: death is sent away, and the living are told to turn back.",
+    "themes": ["death", "ritual", "society"]
+  },
+  {
+    "mandala": 10,
+    "sukta": 85,
+    "title": "The marriage hymn",
+    "kind": "Marriage",
+    "context": "The wedding of Sūryā, later recited in marriage ritual. The later ritual use is not the same as the hymn’s own scene.",
+    "themes": ["society", "women", "ritual", "gods"]
+  },
+  {
+    "mandala": 10,
+    "sukta": 90,
+    "title": "Puruṣa Sūkta",
+    "kind": "Creation",
+    "context": "A cosmogonic hymn: Puruṣa is offered, and the world and social orders are said to arise from the parts.",
+    "themes": ["creation", "cosmos", "ritual", "society", "philosophy"]
+  },
+  {
+    "mandala": 10,
+    "sukta": 95,
+    "title": "Purūravas and Urvaśī",
+    "kind": "Dialogue",
+    "context": "A dialogue hymn: a mortal calls after an Apsaras at daybreak.",
+    "themes": ["women", "gods", "society"]
+  },
+  {
+    "mandala": 10,
+    "sukta": 108,
+    "title": "Sarama and the Paṇis",
+    "kind": "Dialogue",
+    "context": "A dialogue hymn: Sarama, sent toward the Paṇis, demands the hidden cows.",
+    "themes": ["gods", "war", "nature", "society"]
+  },
+  {
+    "mandala": 10,
+    "sukta": 121,
+    "title": "Hiraṇyagarbha",
+    "kind": "Cosmology",
+    "context": "A hymn of the golden embryo, with a refrain asking to which god the offering belongs.",
+    "themes": ["creation", "cosmos", "philosophy", "ritual"]
+  },
+  {
+    "mandala": 10,
+    "sukta": 129,
+    "title": "Nāsadīya Sūkta",
+    "kind": "Cosmology",
+    "context": "Creation / cosmology. The hymn asks what there was, and who could know.",
+    "themes": ["creation", "cosmos", "philosophy"]
+  }
+]

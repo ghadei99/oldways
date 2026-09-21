@@ -1,0 +1,246 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Corpus {
+  id            String         @id @default(cuid())
+  slug          String         @unique
+  abbreviation  String         @unique
+  title         String
+  originalTitle String?
+  tradition     String
+  language      String
+  description   String?
+  divisions     TextDivision[]
+  passages      Passage[]
+  sources       Source[]
+  importRuns    ImportRun[]
+}
+
+/// Hierarchical document structure. Rigveda uses mandala > sukta;
+/// other corpora can use book/chapter/verse, yasna, gatha, etc.
+model TextDivision {
+  id           String         @id @default(cuid())
+  corpusId     String
+  corpus       Corpus         @relation(fields: [corpusId], references: [id], onDelete: Cascade)
+  parentId     String?
+  parent       TextDivision?  @relation("DivisionTree", fields: [parentId], references: [id], onDelete: Cascade)
+  children     TextDivision[] @relation("DivisionTree")
+  divisionType String
+  number       String
+  title        String?
+  orderIndex   Int
+  passages     Passage[]
+
+  @@unique([corpusId, parentId, divisionType, number])
+  @@index([corpusId, divisionType, orderIndex])
+}
+
+model Passage {
+  id                 String            @id @default(cuid())
+  canonicalReference String            @unique
+  sourceReference    String?
+  corpusId           String
+  corpus             Corpus            @relation(fields: [corpusId], references: [id], onDelete: Cascade)
+  divisionId         String
+  division           TextDivision      @relation(fields: [divisionId], references: [id], onDelete: Cascade)
+  /// Currently displayed Sanskrit witness.
+  textSourceId       String?
+  textSource         Source?           @relation("PassageTextSource", fields: [textSourceId], references: [id], onDelete: SetNull)
+  /// Display Devanagari generated from the preferred witness.
+  originalText       String
+  /// Preferred-witness source string (e.g. GRETIL IAST with orig marks).
+  sourceText         String?
+  encoding           String            @default("IAST")
+  normalizedText     String
+  orderIndex         Int
+  transliterations   Transliteration[]
+  translations       Translation[]
+  witnesses          PassageWitness[]
+  storyReferences    StoryReference[]
+  passageThemes      PassageTheme[]
+
+  @@index([corpusId, orderIndex])
+  @@index([divisionId])
+  @@index([corpusId, sourceReference])
+}
+
+/// Source-specific transcription of a canonical passage. Canonical ID lives on Passage.
+model PassageWitness {
+  id              String  @id @default(cuid())
+  passageId       String
+  passage         Passage @relation(fields: [passageId], references: [id], onDelete: Cascade)
+  sourceId        String
+  source          Source  @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  sourceReference String?
+  originalText    String
+  sourceText      String?
+  encoding        String  @default("IAST")
+  normalizedText  String
+  visibility      String  @default("DEVELOPMENT")
+
+  @@unique([passageId, sourceId])
+  @@index([sourceId])
+}
+
+model Transliteration {
+  id        String  @id @default(cuid())
+  passageId String
+  passage   Passage @relation(fields: [passageId], references: [id], onDelete: Cascade)
+  scheme    String  @default("IAST")
+  text      String
+
+  @@unique([passageId, scheme])
+}
+
+model Translator {
+  id           String        @id @default(cuid())
+  slug         String        @unique
+  name         String
+  notes        String?
+  isHistorical Boolean       @default(true)
+  translations Translation[]
+}
+
+model Source {
+  id                      String           @id @default(cuid())
+  slug                    String           @unique
+  corpusId                String?
+  corpus                  Corpus?          @relation(fields: [corpusId], references: [id], onDelete: SetNull)
+  title                   String
+  editor                  String?
+  translatorName          String?
+  publisher               String?
+  year                    Int?
+  edition                 String?
+  url                     String?
+  licence                 String?
+  copyrightStatus         String
+  attributionText         String?
+  attributionRequired     Boolean          @default(true)
+  dateAccessed            DateTime?
+  internalNotes           String?
+  kind                    String           @default("edition")
+  visibility              String           @default("PRODUCTION")
+  commercialUseAllowed    Boolean          @default(false)
+  digitalProject          String?
+  transformationNotes     String?
+  translations            Translation[]    @relation("TranslationDigitalSource")
+  historicalTranslations  Translation[]    @relation("TranslationHistoricalWork")
+  passages                Passage[]        @relation("PassageTextSource")
+  witnesses               PassageWitness[]
+}
+
+model ImportRun {
+  id         String    @id @default(cuid())
+  corpusId   String
+  corpus     Corpus    @relation(fields: [corpusId], references: [id], onDelete: Cascade)
+  sourceSlug String
+  startedAt  DateTime  @default(now())
+  finishedAt DateTime?
+  status     String
+  statsJson  String
+}
+
+model Translation {
+  id                 String      @id @default(cuid())
+  passageId          String
+  passage            Passage     @relation(fields: [passageId], references: [id], onDelete: Cascade)
+  language           String
+  text               String
+  translatorId       String?
+  translator         Translator? @relation(fields: [translatorId], references: [id], onDelete: SetNull)
+  /// Digital transcription of the translation (not the 1896 book itself).
+  sourceId           String?
+  source             Source?     @relation("TranslationDigitalSource", fields: [sourceId], references: [id], onDelete: SetNull)
+  historicalWorkId   String?
+  historicalWork     Source?     @relation("TranslationHistoricalWork", fields: [historicalWorkId], references: [id], onDelete: SetNull)
+  workTitle          String?
+  publicationYear    Int?
+  edition            String?
+  copyrightStatus    String?
+  attribution        String?
+  status             String      @default("UNVERIFIED")
+  visibility         String      @default("DEVELOPMENT")
+  notes              String?
+  isDemo             Boolean     @default(false)
+
+  @@index([passageId, language])
+  @@index([visibility, status])
+}
+
+model Story {
+  id         String           @id @default(cuid())
+  slug       String           @unique
+  title      String
+  subtitle   String?
+  summary    String
+  body       String
+  layerNote  String?
+  references StoryReference[]
+  themes     StoryTheme[]
+  figures    StoryFigure[]
+}
+
+model StoryReference {
+  id            String  @id @default(cuid())
+  storyId       String
+  story         Story   @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  passageId     String
+  passage       Passage @relation(fields: [passageId], references: [id], onDelete: Cascade)
+  referenceType String
+  note          String?
+  orderIndex    Int
+  blockId       String?
+
+  @@index([passageId])
+}
+
+model Theme {
+  id          String         @id @default(cuid())
+  slug        String         @unique
+  title       String
+  description String?
+  passages    PassageTheme[]
+  stories     StoryTheme[]
+}
+
+model PassageTheme {
+  passageId String
+  themeId   String
+  passage   Passage @relation(fields: [passageId], references: [id], onDelete: Cascade)
+  theme     Theme   @relation(fields: [themeId], references: [id], onDelete: Cascade)
+
+  @@id([passageId, themeId])
+}
+
+model StoryTheme {
+  storyId String
+  themeId String
+  story   Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  theme   Theme  @relation(fields: [themeId], references: [id], onDelete: Cascade)
+
+  @@id([storyId, themeId])
+}
+
+model Figure {
+  id      String        @id @default(cuid())
+  slug    String        @unique
+  name    String
+  kind    String
+  stories StoryFigure[]
+}
+
+model StoryFigure {
+  storyId  String
+  figureId String
+  story    Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  figure   Figure @relation(fields: [figureId], references: [id], onDelete: Cascade)
+
+  @@id([storyId, figureId])
+}

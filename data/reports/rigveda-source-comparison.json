@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-09-20",
+  "status": "NO_PRODUCTION_REPLACEMENT",
+  "gretil": {
+    "mandalas": 10,
+    "suktas": 1028,
+    "mantras": 10552,
+    "valakhilya": "Maṇḍala 8 suktas 49–59 (Aufrecht continuous numbering)",
+    "licence": "CC BY-NC-SA 4.0",
+    "commercialUseAllowed": false
+  },
+  "productionSource": null,
+  "comparison": {
+    "canonicalRefsInBoth": 0,
+    "onlyGretil": 10552,
+    "onlyProductionSource": 0,
+    "textuallyDifferentRecords": 0,
+    "note": "No commercially compatible machine-readable Sanskrit replacement was imported. GRETIL remains the only ingested Sanskrit witness."
+  },
+  "sampleInspection": [
+    {
+      "ref": "RV.1.1.1",
+      "gretil": "present (GRETIL witness)",
+      "productionSource": "not imported"
+    },
+    {
+      "ref": "RV.3.33.1",
+      "gretil": "present (GRETIL witness)",
+      "productionSource": "not imported"
+    },
+    {
+      "ref": "RV.10.10.1",
+      "gretil": "present (GRETIL witness)",
+      "productionSource": "not imported"
+    },
+    {
+      "ref": "RV.10.90.1",
+      "gretil": "present (GRETIL witness)",
+      "productionSource": "not imported"
+    },
+    {
+      "ref": "RV.10.95.1",
+      "gretil": "present (GRETIL witness)",
+      "productionSource": "not imported"
+    },
+    {
+      "ref": "RV.10.129.1",
+      "gretil": "present (GRETIL witness)",
+      "productionSource": "not imported"
+    }
+  ]
+}

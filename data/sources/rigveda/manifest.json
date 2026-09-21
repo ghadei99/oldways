@@ -1,0 +1,9 @@
+{
+  "corpus": {
+    "slug": "rigveda",
+    "abbreviation": "RV",
+    "title": "Rigveda",
+    "sourceSlug": "gretil-aufrecht-2019"
+  },
+  "note": "Primary Sanskrit is ingested from data/raw/rigveda/. See SOURCE.md there."
+}

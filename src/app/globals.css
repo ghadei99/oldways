@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f4efe4;
+  --paper-raised: #fbf7ee;
+  --paper-inset: #ebe4d4;
+  --ink: #1f1b16;
+  --ink-soft: #5b5348;
+  --rule: #d7cdba;
+  --rule-strong: #b9ad96;
+  --indigo: #2f3d5b;
+  --indigo-deep: #243049;
+  --copper: #8c5a38;
+  --highlight: #ead9ae;
+  --focus: #2f3d5b;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-paper-inset: var(--paper-inset);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-rule: var(--rule);
+  --color-indigo: var(--indigo);
+  --color-copper: var(--copper);
+  --font-sans: var(--font-ui);
+  --font-serif: var(--font-read);
+  --font-deva: var(--font-deva);
+  --font-orya: var(--font-orya);
+  --font-beng: var(--font-beng);
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  background-color: var(--paper);
+  background-image: var(--grain);
+  color: var(--ink);
+  font-family: var(--font-ui), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--highlight) 80%, white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.font-deva {
+  font-family: var(--font-deva), "Noto Serif Devanagari", serif;
+  font-feature-settings: "kern" 1;
+}
+
+.font-orya {
+  font-family: var(--font-orya), sans-serif;
+}
+
+.font-beng {
+  font-family: var(--font-beng), sans-serif;
+}
+
+.scripture {
+  font-family: var(--font-read), "Source Serif 4", Georgia, serif;
+}
+
+.folio-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rule-strong), transparent);
+}
+
+@keyframes mantra-arrive {
+  0% {
+    background: color-mix(in oklab, var(--highlight) 70%, var(--paper-raised));
+  }
+  100% {
+    background: var(--paper-raised);
+  }
+}
+
+.mantra-highlight {
+  animation: mantra-arrive 2.4s ease-out;
+}
+
+.ref-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 0.35rem;
+  margin-bottom: 0.2rem;
+  padding: 0.08rem 0.45rem 0.12rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  text-decoration: none;
+  vertical-align: middle;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.ref-chip:hover {
+  background: var(--paper-inset);
+  border-color: var(--indigo);
+}
+
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  opacity: 0.35;
+  background-image: var(--grain);
+  mix-blend-mode: multiply;
+  z-index: 0;
+}

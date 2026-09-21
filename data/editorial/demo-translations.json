@@ -1,0 +1,122 @@
+[
+  {
+    "canonicalReference": "RV.3.33.4",
+    "language": "en",
+    "text": "So I have spoken, with sacred speech, to the fortunate Vipāś, asking her to yield a crossing.",
+    "translatorSlug": "dev-seed-en"
+  },
+  {
+    "canonicalReference": "RV.10.10.1",
+    "language": "hi",
+    "text": "मैं अपने मित्र को मैत्री के लिए आकर्षित करना चाहती हूँ। वह मेधावी, विस्तृत जलराशि को पार कर, पृथ्वी और आने वाले दिनों का स्मरण रखते हुए, पिता की संतति — एक पुत्र — धारण करे।",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.10.1",
+    "language": "or",
+    "text": "ମୁଁ ମୋ ବନ୍ଧୁକୁ ମିତ୍ରତା ପାଇଁ ଆକର୍ଷିତ କରିବାକୁ ଚାହେଁ। ସେ ମେଧାବୀ ବ୍ୟାପ୍ତ ଜଳଧି ପାର ହୋଇ, ପୃଥିବୀ ଓ ଆଗାମୀ ଦିନର ସ୍ମରଣ ରଖି, ପିତାର ବଂଶ — ଏକ ପୁତ୍ର — ଧାରଣ କରନ୍ତୁ।",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.10.1",
+    "language": "bn",
+    "text": "আমি আমার বন্ধুকে মৈত্রীর দিকে আনতে চাই। সেই মেধাবী, বিস্তৃত জলরাশি পেরিয়ে, পৃথিবী ও আগামী দিনের কথা স্মরণ রেখে, পিতার বংশধর — এক পুত্র — গ্রহণ করুক।",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.10.3",
+    "language": "hi",
+    "text": "अमर देवता यही तुझसे चाहते हैं — एकमात्र नश्वर की संतति। तो तेरा मन मेरे मन में बँध जाए, और पति की तरह तू इस तन में प्रवेश कर।",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.10.3",
+    "language": "or",
+    "text": "ଅମରମାନେ ତୁମଠାରୁ ଏହି କାମନା କରନ୍ତି — ଏକମାତ୍ର ମର୍ତ୍ତ୍ୟର ସନ୍ତାନ। ତେବେ ତୁମ ମନ ମୋ ମନରେ ବନ୍ଧା ହେଉ, ପତି ପରି ଏହି ଶରୀରକୁ ଗ୍ରହଣ କର।",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.10.3",
+    "language": "bn",
+    "text": "অমরেরা তোমার কাছে এই কামনা করেন — একমাত্র মর্ত্যের সন্তান। তবে তোমার মন আমার মনে বাঁধা পড়ুক, স্বামীর মতো এই তনু গ্রহণ করো।",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.129.1",
+    "language": "en",
+    "text": "At that time there was neither non-being nor being; there was no mid-space, nor the heaven beyond.\nWhat covered it? Where? In whose protection? Was there water, fathomless and deep?",
+    "translatorSlug": "dev-seed-en"
+  },
+  {
+    "canonicalReference": "RV.10.129.1",
+    "language": "hi",
+    "text": "उस समय न असत् था, न सत् था। न वायुमण्डल था, न उसके पार का व्योम। किसने ढका था? कहाँ? किसकी शरण में? क्या तब गहन, गंभीर जल था?",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.129.1",
+    "language": "or",
+    "text": "ସେହି ସମୟରେ ନ ଅସତ୍ ଥିଲା, ନ ସତ୍ ଥିଲା। ନ ବାୟୁମଣ୍ଡଳ ଥିଲା, ନ ତାହାର ପାରର ବ୍ୟୋମ। କିଏ ଢାଙ୍କିଥିଲା? କେଉଁଠି? କାହାର ଶରଣରେ? କ’ଣ ସେତେବେଳେ ଗହନ, ଗଭୀର ଜଳ ଥିଲା?",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.129.1",
+    "language": "bn",
+    "text": "সেই কালে না অসৎ ছিল, না সৎ ছিল। না বায়ুমণ্ডল ছিল, না তার পারের ব্যোম। কে ঢেকেছিল? কোথায়? কার শরণে? সে কি গহন, গভীর জল ছিল?",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.129.2",
+    "language": "hi",
+    "text": "तब न मृत्यु थी, न अमरता। न रात्रि और दिन का कोई चिह्न था। वह एक, बिना वायु के, अपनी स्वधा से प्राणवान था। उसके अतिरिक्त और कुछ नहीं था।",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.129.2",
+    "language": "or",
+    "text": "ସେତେବେଳେ ନ ମୃତ୍ୟୁ ଥିଲା, ନ ଅମରତା। ନ ରାତି ଓ ଦିନର କୌଣସି ଚିହ୍ନ ଥିଲା। ସେହି ଏକ, ବାୟୁ ବିନା, ନିଜ ସ୍ୱଧାରେ ପ୍ରାଣବନ୍ତ ଥିଲା। ତାହା ବ୍ୟତୀତ ଆଉ କିଛି ନଥିଲା।",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.129.2",
+    "language": "bn",
+    "text": "তখন না মৃত্যু ছিল, না অমরত্ব। না রাত্রি ও দিনের কোনো চিহ্ন ছিল। সেই এক, বায়ুহীন, নিজ স্বধায় প্রাণবন্ত ছিল। তার বাইরে আর কিছুই ছিল না।",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.129.3",
+    "language": "hi",
+    "text": "अग्र में तम था, तम से ढका हुआ। यह सब बिना चिह्न का जल-सा था। जो कुछ था वह शून्य से ढका था। तप की महिमा से वह एक उत्पन्न हुआ।",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.129.4",
+    "language": "hi",
+    "text": "उसके बाद अग्र में काम उठा — मन का प्रथम बीज। कवियों ने हृदय से खोजकर असत् में सत् का बन्धुत्व पाया।",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.129.6",
+    "language": "hi",
+    "text": "कौन वास्तव में जानता है, कौन यहाँ कह सकता है — यह सृष्टि कहाँ से जन्मी, कहाँ से आई? देवता इसके विसर्जन के बाद के हैं। फिर कौन जाने यह कहाँ से हुई?",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.129.6",
+    "language": "or",
+    "text": "କିଏ ପ୍ରକୃତରେ ଜାଣେ, କିଏ ଏଠାରେ କହିପାରେ — ଏ ସୃଷ୍ଟି କେଉଁଠୁ ଜନ୍ମିଲା, କେଉଁଠୁ ଆସିଲା? ଦେବତାମାନେ ଏହାର ବିସର୍ଜନ ପରେ। ତେବେ କିଏ ଜାଣେ ଏହା କେଉଁଠୁ ହେଲା?",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.129.6",
+    "language": "bn",
+    "text": "কেই বা সত্যি জানে, কে এখানে বলতে পারে — এ সৃষ্টি কোথা থেকে জন্মাল, কোথা থেকে এল? দেবতারা এর বিসর্জনের পরে। তবে কে জানে এটি কোথা থেকে হল?",
+    "translatorSlug": "dev-seed-indic"
+  },
+  {
+    "canonicalReference": "RV.10.129.7",
+    "language": "hi",
+    "text": "यह विसृष्टि जहाँ से हुई — उसने इसे धारण किया या नहीं किया — जो इसका अध्यक्ष परम व्योम में है, वह जानता है, या शायद नहीं जानता।",
+    "translatorSlug": "dev-seed-indic"
+  }
+]
